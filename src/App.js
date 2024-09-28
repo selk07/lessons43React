@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import React, { useState } from "react";
+import ChildComponent from "./components/ChildComponent";
 import './App.css';
 
-function App() {
+
+export const UserInfo = React.createContext({});
+
+function App () {
+  const [userDetails] = useState({
+    name: "Alex",
+    age: 30,
+    id:1
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="parent-component">
+    <UserInfo.Provider value={userDetails}>
+      <h1>Parent Components</h1>
+      <ChildComponent userDetails={userDetails} />
+    </UserInfo.Provider>
     </div>
   );
 }
-
 export default App;
+
+
